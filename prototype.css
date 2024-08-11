@@ -1,0 +1,137 @@
+:root {
+    --container-height: 50px; /* Height of each container element */
+    --base-y: calc(50vh - 100px); /* Base Y position for the first element */
+    --x-position: calc(40vw - 80px); /* X position of the stack, adjusted for width */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    font-size: 18px; /* Global font size for all elements */
+}
+
+.script-container {
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stack-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    width: 160px;
+    height: 300px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.step, .stack {
+    width: 160px; /* Consistent width */
+    height: var(--container-height); /* Consistent height */
+    border: 2px solid #333;
+    border-radius: 5px;
+    margin: 0; /* Remove margin to avoid gaps */
+    padding: 0;
+    background-color: #fff;
+    box-sizing: border-box; /* Include padding and border in width and height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.step {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(-40);
+    animation: moveToStack 2s forwards;
+    z-index: 2;
+}
+
+.stack {
+    opacity: 0;
+    z-index: 1;
+}
+
+@keyframes moveToStack {
+    0% {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-20px) translateX(0); /* Move up */
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-20px) translateX(var(--x-position)); /* Move to the right towards the center */
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(calc(var(--base-y) - var(--y-offset))) translateX(var(--x-position)); /* Move down into the stack */
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(calc(var(--base-y) - var(--y-offset))) translateX(var(--x-position)); /* Fade out */
+    }
+}
+
+/* Offsets for each step element */
+.step1 {
+    --y-offset: calc(var(--container-height) * 0 - var(--container-height)); /* No offset for the first element */
+    animation-delay: 0s;
+}
+
+.step2 {
+    --y-offset: calc(var(--container-height) * 1 - var(--container-height)); /* Offset by one container height */
+    animation-delay: 2s;
+}
+
+.step3 {
+    --y-offset: calc(var(--container-height) * 2 - var(--container-height)); /* Offset by two container heights */
+    animation-delay: 4s;
+}
+
+.step4 {
+    --y-offset: calc(var(--container-height) * 3 - var(--container-height)); /* Offset by three container heights */
+    animation-delay: 6s;
+}
+
+.step5 {
+    --y-offset: calc(var(--container-height) * 4 - var(--container-height)); /* Offset by four container heights */
+    animation-delay: 8s;
+}
+
+.stack1 { animation: stackAppear 2s 2s forwards; }
+.stack2 { animation: stackAppear 2s 4s forwards; }
+.stack3 { animation: stackAppear 2s 6s forwards; }
+.stack4 { animation: stackAppear 2s 8s forwards; }
+.stack5 { animation: stackAppear 2s 10s forwards; }
+
+@keyframes stackAppear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
