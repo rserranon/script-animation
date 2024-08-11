@@ -1,0 +1,145 @@
+:root {
+    --container-height: 50px; /* Height of each container element */
+    --base-y: calc(50vh - 100px); /* Base Y position for the first element */
+    --x-position: calc(40vw - 80px); /* X position of the stack, adjusted for width */
+    --animation-duration: 2s; /* Duration of the moveToStack animation */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    font-size: 18px; /* Global font size for all elements */
+}
+
+.script-container {
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stack-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    width: 160px;
+    height: 300px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.step, .stack {
+    width: 160px; /* Consistent width */
+    height: var(--container-height); /* Consistent height */
+    border: 2px solid #333;
+    border-radius: 5px;
+    margin: 0; /* Remove margin to avoid gaps */
+    padding: 0;
+    background-color: #fff;
+    box-sizing: border-box; /* Include padding and border in width and height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.step {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(-40px);
+    animation: moveToStack var(--animation-duration) forwards;
+    z-index: 2;
+}
+
+.stack {
+    opacity: 0;
+    z-index: 1;
+}
+
+@keyframes moveToStack {
+    0% {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-20px) translateX(0); /* Move up */
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-20px) translateX(var(--x-position)); /* Move to the right towards the center */
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(calc(var(--base-y) - var(--y-offset))) translateX(var(--x-position)); /* Move down into the stack */
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(calc(var(--base-y) - var(--y-offset))) translateX(var(--x-position)); /* Fade out */
+    }
+}
+
+@keyframes stackAppear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    width: 100%;
+    background-color: #e0e0e0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#opcodeInput {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #333;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+
