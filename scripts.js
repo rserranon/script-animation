@@ -9,7 +9,7 @@ function getOpcodeType(opcode) {
         'OP_NOP', 'OP_IF', 'OP_NOTIF', 'OP_ELSE', 'OP_ENDIF', 'OP_VERIFY', 'OP_RETURN'
     ];
 
-    const stackOpcode = [ // Renamed from 'stack' to 'stackOpcode'
+    const stackOpcode = [ 
         'OP_TOALTSTACK', 'OP_FROMALTSTACK', 'OP_IFDUP', 'OP_DEPTH', 'OP_DROP', 'OP_DUP', 
         'OP_NIP', 'OP_OVER', 'OP_PICK', 'OP_ROLL', 'OP_ROT', 'OP_SWAP', 'OP_TUCK', 
         'OP_2DROP', 'OP_2DUP', 'OP_3DUP', 'OP_2OVER', 'OP_2ROT', 'OP_2SWAP'
@@ -75,37 +75,34 @@ function updateFooter() {
         footer.appendChild(label);
     });
 }
-
 function animateOpcodes(opcodeString) {
     const opcodes = opcodeString.split(' ');
     const scriptContainer = document.querySelector('.script-container');
     const stackContainer = document.querySelector('.stack-container');
     
-    const opcodeTypes = [];
-
     // Clear previous elements
     scriptContainer.innerHTML = '';
     stackContainer.innerHTML = '';
 
     opcodes.forEach((opcode, index) => {
         const type = getOpcodeType(opcode);
-        opcodeTypes.push(type);
 
         const step = document.createElement('div');
         step.classList.add('step', `step${index + 1}`, type);
-        step.style.setProperty('--y-offset', `calc(var(--container-height) * ${index} - var(--container-height))`);
+        step.style.setProperty('--index', index);
         step.style.animationDelay = `${index * 2}s`;
         step.innerText = opcode;
 
         const stack = document.createElement('div');
         stack.classList.add('stack', `stack${index + 1}`, type);
         stack.innerText = opcode;
-        stack.style.animation = `stackAppear 2s ${(index + 1) * 2}s forwards`;
+        stack.style.animationDelay = `${(index + 1) * 2}s`;
 
         scriptContainer.appendChild(step);
         stackContainer.appendChild(stack);
     });
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize the footer with all possible types
     updateFooter();

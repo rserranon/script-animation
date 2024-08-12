@@ -1,6 +1,7 @@
 :root {
-    --container-height: 50px; /* Height of each container element */
-    --base-y: calc(50vh - 100px); /* Base Y position for the first element */
+    --container-height: 25px; /* Height of each container element */
+    --stack-height: 500px; /* Total height of the stack */
+    --base-y: calc(50vh + (var(--stack-height) / 2) - var(--container-height) * 4); /* Adjusted base Y position to align with the bottom of the stack */
     --x-position: calc(40vw - 80px); /* X position of the stack, adjusted for width */
     --animation-duration: 2s; /* Duration of the moveToStack animation */
 }
@@ -11,7 +12,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     margin: 0;
     background-color: #f0f0f0;
 }
@@ -33,7 +34,7 @@ body {
 .label {
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 12px;
     color: #fff;
     text-transform: capitalize;
 }
@@ -68,7 +69,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     width: 160px;
-    height: 400px;
+    height: var(--stack-height); /* Dynamically adjust stack height */
     border: 2px solid #333;
     border-radius: 5px;
     background-color: #fff;
@@ -92,7 +93,7 @@ body {
 .step {
     position: absolute;
     opacity: 0;
-    transform: translateY(-40px);
+    transform: translateY(calc(var(--container-height) * -1));
     animation: moveToStack var(--animation-duration) forwards;
     z-index: 2;
 }
@@ -100,6 +101,7 @@ body {
 .stack {
     opacity: 0;
     z-index: 1;
+    animation: stackAppear var(--animation-duration) forwards; /* Ensure stack element appears after animation */
 }
 
 @keyframes moveToStack {
@@ -117,11 +119,11 @@ body {
     }
     80% {
         opacity: 1;
-        transform: translateY(calc(var(--base-y) - var(--y-offset))) translateX(var(--x-position)); /* Move down into the stack */
+        transform: translateY(calc(var(--base-y) - var(--container-height) * var(--index))) translateX(var(--x-position)); /* Move down into the stack */
     }
     100% {
         opacity: 0;
-        transform: translateY(calc(var(--base-y) - var(--y-offset))) translateX(var(--x-position)); /* Fade out */
+        transform: translateY(calc(var(--base-y) - var(--container-height) * var(--index))) translateX(var(--x-position)); /* Fade out */
     }
 }
 
@@ -165,7 +167,6 @@ button:hover {
     background-color: #f0f0f0;
 }
 
-
 /* Type-specific styles */
 .constants {
     background-color: #ffcc00;
@@ -175,8 +176,8 @@ button:hover {
     background-color: #ff6666;
 }
 
-.stack-opcode { /* Updated to match the new class name */
-    background-color: #66b3ff; /* Assign a color to "Stack opcode" */
+.stack-opcode {
+    background-color: #66b3ff;
 }
 
 .splice {
@@ -202,3 +203,4 @@ button:hover {
 .keys {
     background-color: #3366cc;
 }
+
