@@ -1,7 +1,7 @@
 :root {
-    --container-height: 50px; /* Height of each container element */
+    --container-height: 25px; /* Height of each container element */
     --base-y: calc(50vh - 100px); /* Base Y position for the first element */
-    --x-position: calc(40vw - 80px); /* X position of the stack, adjusted for width */
+    --x-position: calc(40vw - 50%); /* X position of the stack, adjusted for width */
     --animation-duration: 2s; /* Duration of the moveToStack animation */
 }
 
@@ -11,7 +11,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     margin: 0;
     background-color: #f0f0f0;
 }
@@ -92,7 +92,6 @@ body {
 .step {
     position: absolute;
     opacity: 0;
-    transform: translateY(-40px);
     animation: moveToStack var(--animation-duration) forwards;
     z-index: 2;
 }

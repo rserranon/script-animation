@@ -76,7 +76,10 @@ function updateFooter() {
     });
 }
 
+
 function animateOpcodes(opcodeString) {
+    const myStack = new Stack();
+
     const opcodes = opcodeString.split(' ');
     const scriptContainer = document.querySelector('.script-container');
     const stackContainer = document.querySelector('.stack-container');
@@ -93,7 +96,7 @@ function animateOpcodes(opcodeString) {
 
         const step = document.createElement('div');
         step.classList.add('step', `step${index + 1}`, type);
-        step.style.setProperty('--y-offset', `calc(var(--container-height) * ${index} - var(--container-height))`);
+        step.style.setProperty('--y-offset', `calc(var(--container-height) * ${index-1} - var(--container-height))`);
         step.style.animationDelay = `${index * 2}s`;
         step.innerText = opcode;
 
@@ -104,7 +107,9 @@ function animateOpcodes(opcodeString) {
 
         scriptContainer.appendChild(step);
         stackContainer.appendChild(stack);
+        myStack.push(opcode); 
     });
+    myStack.printStack()
 }
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize the footer with all possible types
