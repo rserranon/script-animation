@@ -1,8 +1,8 @@
 :root {
     --container-height: 25px; /* Height of each container element */
-    --stack-height: 500px; /* Total height of the stack */
-    --base-y: calc(50vh + (var(--stack-height) / 2) - var(--container-height) * 4); /* Adjusted base Y position to align with the bottom of the stack */
-    --x-position: calc(40vw - 80px); /* X position of the stack, adjusted for width */
+    --stack-height: 500px;
+    --base-y: calc(50vh - 100px); /* Base Y position for the first element */
+    --x-position: calc(40vw - 50%); /* X position of the stack, adjusted for width */
     --animation-duration: 2s; /* Duration of the moveToStack animation */
 }
 
@@ -93,7 +93,6 @@ body {
 .step {
     position: absolute;
     opacity: 0;
-    transform: translateY(calc(var(--container-height) * -1));
     animation: moveToStack var(--animation-duration) forwards;
     z-index: 2;
 }
