@@ -118,6 +118,47 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: moveToStack var(--animation-duration) forwards;
+    opacity: 0;
+    z-index: 2;
+}
+
+.stack {
+    opacity: 0;
+    z-index: 1;
+    animation: stackAppear var(--animation-duration) forwards; /* Ensure stack element appears after animation */
+}
+
+@keyframes moveToStack {
+    0% {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-20px) translateX(0); /* Move up */
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-20px) translateX(var(--x-position)); /* Move to the right towards the center */
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(calc(var(--base-y) - var(--container-height) * var(--index))) translateX(var(--x-position)); /* Move down into the stack */
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(calc(var(--base-y) - var(--container-height) * var(--index))) translateX(var(--x-position)); /* Fade out */
+    }
+}
+
+@keyframes stackAppear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .operation-result {
