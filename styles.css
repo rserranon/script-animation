@@ -44,25 +44,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    width: 100%;
+    height: calc(100% - 150px); /* Ensure the content fills the remaining space */
 }
 
-.container {
-    font-size: 18px; /* Global font size for all elements */
-}
-
-.script-container {
-    position: absolute;
-    left: 10%;
-    top: 20%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.stack-container {
+.alt-stack-container {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 20%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column-reverse;
@@ -76,63 +66,52 @@ body {
     z-index: 1;
 }
 
-.step, .stack {
-    width: 160px; /* Consistent width */
-    height: var(--container-height); /* Consistent height */
+.stack-container {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    width: 160px;
+    height: var(--stack-height); /* Dynamically adjust stack height */
     border: 2px solid #333;
     border-radius: 5px;
-    margin: 0; /* Remove margin to avoid gaps */
-    padding: 0;
     background-color: #fff;
-    box-sizing: border-box; /* Include padding and border in width and height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.step {
-    position: absolute;
-    opacity: 0;
-    animation: moveToStack var(--animation-duration) forwards;
-    z-index: 2;
-}
-
-.stack {
-    opacity: 0;
     z-index: 1;
-    animation: stackAppear var(--animation-duration) forwards; /* Ensure stack element appears after animation */
 }
 
-@keyframes moveToStack {
-    0% {
-        opacity: 1;
-        transform: translateY(0) translateX(0);
-    }
-    20% {
-        opacity: 1;
-        transform: translateY(-20px) translateX(0); /* Move up */
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-20px) translateX(var(--x-position)); /* Move to the right towards the center */
-    }
-    80% {
-        opacity: 1;
-        transform: translateY(calc(var(--base-y) - var(--container-height) * var(--index))) translateX(var(--x-position)); /* Move down into the stack */
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(calc(var(--base-y) - var(--container-height) * var(--index))) translateX(var(--x-position)); /* Fade out */
-    }
+.operation-result {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
 }
 
-@keyframes stackAppear {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+.result-label {
+    background-color: #ffcc00;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 20%;
+}
+
+.script-execution {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.running-script {
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 50px;
+    margin-left: 20%;
 }
 
 .controls {
