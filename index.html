@@ -8,20 +8,41 @@
 </head>
 <body>
     <div class="content">
-        <!-- The alt-stack-container will represent the alternative stack -->
-        <div class="alt-stack-container"></div>
         <!-- The stack-container will represent the main stack -->
-        <div class="stack-container"></div>
+        <div class="stack-container">
+          <div class="step">
+            OP_1
+          </div>
+          <div class="step">
+            OP_2
+          </div>
+        </div>
+    <!-- Label for Main Stack -->
+    <!-- <div class="stack-label">Stack</div> -->
+    <!-- The alt-stack-container will represent the alternative stack -->
+      <div class="alt-stack-container"></div>
     </div>
+    <!-- Label for Alt Stack -->
+    <!-- <div class="stack-label">Alt Stack</div> -->
     
     <div class="operation-result">
         <!-- Div for displaying the result of the operation -->
-        <div class="result-label">Result of the Operation</div>
+        <div class="result-label">
+          Result of the Operation
+        </div>
     </div>
 
     <div class="script-execution">
         <!-- Div for displaying the running script -->
-        <div class="running-script"></div>
+        <div class="running-script">
+          OP_ 
+        </div>
+        <div class="running-script">
+          OP_2
+        </div>
+        <div class="running-script">
+          OP_CAT
+        </div>
     </div>
 
     <div class="controls">
@@ -29,6 +50,12 @@
         <input type="text" id="opcodeInput" placeholder="Enter opcodes (e.g., OP_DUP OP_HASH160)">
         <!-- Button to trigger the animation -->
         <button onclick="animateOpcodes(document.getElementById('opcodeInput').value)">Animate Opcodes</button>
+        <button onclick="">Clear Running Script and Cancel</button>
+        <label>
+          <input type="checkbox" id="toggleAltStack" onclick="toggleAltStackVisibility()"> 
+            Show Alt Stack
+          </input>
+        </label>
     </div>
     
     <footer class="footer">

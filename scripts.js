@@ -108,6 +108,17 @@ function animateOpcodes(opcodeString) {
     myStack.printStack()
 }
 
+function toggleAltStackVisibility() {
+    const altStack = document.querySelector('.alt-stack-container');
+    const checkbox = document.getElementById('toggleAltStack');
+
+    if (checkbox.checked) {
+        altStack.style.display = 'flex'; // Show the Alt Stack
+    } else {
+        altStack.style.display = 'none'; // Hide the Alt Stack
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize the footer with all possible types
     updateFooter();
