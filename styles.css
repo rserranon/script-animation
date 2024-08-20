@@ -6,29 +6,16 @@
     --animation-duration: 2s; /* Duration of the moveToStack animation */
 }
 
-body {
+  body {
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-    margin: 0;
     background-color: #f0f0f0;
 }
 
 .footer {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    padding: 10px;
     width: 100%;
     background-color: #e0e0e0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    bottom: 0;
-    left: 0;
 }
 
 .label {
@@ -39,47 +26,21 @@ body {
     text-transform: capitalize;
 }
 
-.stack-label {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 5px;
-    font-size: 14px;
-    width: 100%; /* Make the label take the full width available */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /*grid-auto-rows: minmax(var(--container-height), auto);*/
+    gap: 10px; /* Add gap for spacing if necessary */
+    align-items: start;
 }
 
-.stack-container + .stack-label,
-.alt-stack-container + .stack-label {
-    position: absolute;
-    top: 100%; /* Position the label directly below the stack */
-    left: 50%;
-    transform: translateX(-50%); /* Center the label horizontally */
-}
-
-.content {
-    border: 1px  #000;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    height: calc(100% - 150px); /* Ensure the content fills the remaining space */
-}
-
-.stack-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center align stack and label */
-}
 .stack-container {
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%, -50%);
   display: flex;
+  grid-column: 2 / span 1; /* Ensure it's placed in the 2nd column */
+  grid-row: 1 / span 3; /* Ensure it spans 3 rows if needed */
   flex-direction: column-reverse;
-  justify-content: flex-start;
-  align-items: center;
+  grid-auto-rows: minmax(var(--container-height), auto);
+  align-items: start;
   width: 160px;
   height: var(--stack-height); /* Dynamically adjust stack height */
   border: 2px solid #333;
@@ -89,14 +50,10 @@ body {
 }
 
 .alt-stack-container {
-    position: absolute;
-    top: 50%;
-    left: 60%;
-    transform: translate(-50%, -50%);
     display: flex;
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 3; /* Adjust row span if needed */
     flex-direction: column-reverse;
-    justify-content: flex-start;
-    align-items: center;
     width: 160px;
     height: var(--stack-height); /* Dynamically adjust stack height */
     border: 2px solid #333;
@@ -106,7 +63,27 @@ body {
     display: none;
 }
 
+.stack-item {
+    display: none;
+    width: 160px;
+    height: var(--container-height);
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+    justify-content: center;
+    /*align-items: center;*/
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.stack-item.appear {
+    animation: stackAppear var(--animation-duration) forwards;
+    opacity: 1; /* End state */
+}
+
 .step{
+    display: flex;
     width: 160px; /* Consistent width */
     height: var(--container-height); /* Consistent height */
     border: 2px solid #333;
@@ -115,16 +92,14 @@ body {
     padding: 0;
     background-color: #fff;
     box-sizing: border-box; /* Include padding and border in width and height */
-    display: flex;
     justify-content: center;
-    align-items: center;
     animation: moveToStack var(--animation-duration) forwards;
     opacity: 0;
     z-index: 2;
 }
 
 .stack {
-    opacity: 0;
+    opacity: 1;
     z-index: 1;
     animation: stackAppear var(--animation-duration) forwards; /* Ensure stack element appears after animation */
 }
@@ -162,38 +137,45 @@ body {
 }
 
 .operation-result {
+    grid-column: 1;
     width: 100%;
-    display: flex;
-    margin-bottom: 30px;
 }
 
+
 .result-label {
+    grid-column: 1 / 2; /* Adjust this to ensure it's in the first column */
+    grid-row: 1; /* Place it in the first row */
     background-color: #ffcc00;
     padding: 10px;
     font-weight: bold;
-    margin-left: 10%;
+    width: 100%; /* Ensure it spans the width needed */
 }
 
 .script-execution {
-    width: 100%;
+    grid-column: 1;
+    grid-row: 3;
     display: flex;
+    width: 100%;
     justify-content: flex-start;
     margin-bottom: 10px;
 }
 
 .running-script {
-    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: var(--container-height); /* Dynamically adjust stack height */
     border: 2px solid #333;
     border-radius: 5px;
-    padding: 10px;
-    height: calc(var(container-height/2));
-    margin: 1px;
-    /*margin-left: 10%;*/
-}
+    background-color: #fff;
+    z-index: 1;
+    padding: 3px;
+    margin-left 10%;
+  }
 
 .controls {
-    display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
+    grid-column: 1 / -1;
     align-items: center;
     gap: 10px;
     padding: 20px;
@@ -232,7 +214,6 @@ button:hover {
 }
 
 .stack-opcode {
-    background-color: #66b3ff;
 }
 
 .splice {
@@ -258,4 +239,3 @@ button:hover {
 .keys {
     background-color: #3366cc;
 }
-
