@@ -23,22 +23,13 @@
             </div>
         </div>
         <div class="script-execution">
-            <!-- Div for displaying the running script -->
-            <div class="running-script">
-              OP_ 
-            </div>
-            <div class="running-script">
-              OP_2
-            </div>
-            <div class="running-script">
-              OP_CAT
-            </div>
+            <!-- Div for displaying the running script, the running script will be create here when the Run Script button gets pushed-->
         </div>
         <div class="controls">
             <!-- Input for opcode string -->
             <input type="text" id="opcodeInput" placeholder="Enter opcodes (e.g., OP_DUP OP_HASH160)">
             <!-- Button to trigger the animation -->
-            <button onclick="animateOpcodes(document.getElementById('opcodeInput').value)">Animate Opcodes</button>
+            <button onclick="animateOpcodes(document.getElementById('opcodeInput').value)">Run Scritp</button>
             <button onclick="">Clear Running Script and Cancel</button>
             <label>
               <input type="checkbox" id="toggleAltStack" onclick="toggleAltStackVisibility()"> 

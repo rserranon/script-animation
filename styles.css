@@ -8,6 +8,7 @@
 
   body {
     font-family: Arial, sans-serif;
+    font-size: 12px;
     background-color: #f0f0f0;
 }
 
@@ -16,6 +17,9 @@
     width: 100%;
     background-color: #e0e0e0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    gap: 10px; /* Adds space between all label elements */
+    grid-column: 1 / -1; /* Ensures the footer spans the full width of the grid */
+    grid-row: 6; /* Places the footer in the correct row */
 }
 
 .label {
@@ -37,7 +41,7 @@
 .stack-container {
   display: flex;
   grid-column: 2 / span 1; /* Ensure it's placed in the 2nd column */
-  grid-row: 1 / span 3; /* Ensure it spans 3 rows if needed */
+  grid-row: 2 / span 3; /* Ensure it spans 3 rows if needed */
   flex-direction: column-reverse;
   grid-auto-rows: minmax(var(--container-height), auto);
   align-items: start;
@@ -52,7 +56,7 @@
 .alt-stack-container {
     display: flex;
     grid-column: 3 / span 1;
-    grid-row: 1 / span 3; /* Adjust row span if needed */
+    grid-row: 2 / span 3; /* Adjust row span if needed */
     flex-direction: column-reverse;
     width: 160px;
     height: var(--stack-height); /* Dynamically adjust stack height */
@@ -72,14 +76,14 @@
     background-color: #fff;
     box-sizing: border-box;
     justify-content: center;
-    /*align-items: center;*/
-    transition: all 0.3s ease;
+    align-items: center;
     opacity: 0;
+    transition: all 0.3s ease; /*  smooth opacity transition */
 }
 
 .stack-item.appear {
+    display: flex;
     animation: stackAppear var(--animation-duration) forwards;
-    opacity: 1; /* End state */
 }
 
 .step{
@@ -93,15 +97,9 @@
     background-color: #fff;
     box-sizing: border-box; /* Include padding and border in width and height */
     justify-content: center;
+    align-items: center;
     animation: moveToStack var(--animation-duration) forwards;
-    opacity: 0;
     z-index: 2;
-}
-
-.stack {
-    opacity: 1;
-    z-index: 1;
-    animation: stackAppear var(--animation-duration) forwards; /* Ensure stack element appears after animation */
 }
 
 @keyframes moveToStack {
@@ -137,29 +135,30 @@
 }
 
 .operation-result {
-    grid-column: 1;
+    grid-column: 1 / span 1; /* Align with the stack */
+    grid-row: 4; /* Move to the base level of the stack */
     width: 100%;
+    align-self: end; /* Align to the bottom of the row */
 }
 
 
 .result-label {
     grid-column: 1 / 2; /* Adjust this to ensure it's in the first column */
-    grid-row: 1; /* Place it in the first row */
+    grid-row: 4; /* Place it in the first row */
     background-color: #ffcc00;
     padding: 10px;
     font-weight: bold;
-    width: 100%; /* Ensure it spans the width needed */
+    width: 80%; /* Ensure it spans the width needed */
 }
 
 .script-execution {
-    grid-column: 1;
-    grid-row: 3;
+    grid-column: 1 / -1; /* Span the full width of the grid */
+    grid-row: 5; /* Move to the row immediately below the stack */
     display: flex;
     width: 100%;
     justify-content: flex-start;
     margin-bottom: 10px;
 }
-
 .running-script {
     display: flex;
     flex-direction: row;
@@ -182,6 +181,8 @@
     width: 100%;
     background-color: #e0e0e0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    grid-column: 1 / -1; 
+    grid-row: 7;
 }
 
 #opcodeInput {

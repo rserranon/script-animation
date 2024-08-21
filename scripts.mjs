@@ -15,26 +15,35 @@ function animateOpcodes(opcodeString) {
   opcodes.forEach((opcode, index) => {
     const type = getOpcodeType(opcode);
 
+    // Create the execution step element
     const step = document.createElement("div");
     step.classList.add("step", `step${index + 1}`, type);
     step.style.setProperty("--index", index);
-    step.style.setProperty(
-      "--y-offset",
-      `calc(var(--container-height) * ${index - 1} - var(--container-height))`,
-    );
-    step.style.animationDelay = `${index * 2}s`;
     step.innerText = opcode;
-    // Trigger the appearance of the stack item immediately after adding to the DOM
-    requestAnimationFrame(() => {
-      stack.classList.add("appear");
-    });
+
+    // Add the step to the script execution container
+    scriptContainer.appendChild(step);
+
+    // Animate the step element
+    step.style.animationDelay = `${index * 2}s`;
+
+    // Create the stack element
     const stack = document.createElement("div");
     stack.classList.add("stack-item", `item-${index + 1}`, type);
     stack.innerText = opcode;
-    stack.style.animationDelay = `${(index + 1) * 2}s`;
 
-    scriptContainer.appendChild(step);
-    stackContainer.appendChild(stack);
+    // Schedule the move to stack and stack appear animations
+    setTimeout(() => {
+      // Move the step to the stack and make it disappear from execution
+      step.style.opacity = "0";
+      stackContainer.appendChild(stack);
+
+      // Trigger the stack appear animation
+      requestAnimationFrame(() => {
+        stack.classList.add("appear");
+      });
+    }, index * 2000 + 1800); // Adjust timing to ensure smooth transition
+
     myStack.push(opcode);
   });
   myStack.printStack();
@@ -54,14 +63,9 @@ function toggleAltStackVisibility() {
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize the footer with all possible types
   updateFooter();
-
-  // Example usage:
-  //   animateOpcodes(
-  //     "OP_DUP OP_HASH160 OP_EQUAL OP_CHECKSIG OP_VERIFY OP_0 OP_CAT OP_ADD pk(A)",
-  //   );
-  // });
-
-  // Define global handlers for them to be available in the html
   globalThis.animateOpcodes = animateOpcodes;
   globalThis.toggleAltStackVisibility = toggleAltStackVisibility;
 });
+
+// Example script
+// OP_1 OP_2 OP_SWAP OP_1 OP_CAT OP_CHECKSIGVERIFY OP_AND OP_ADD
