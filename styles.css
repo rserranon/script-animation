@@ -1,8 +1,6 @@
-:root {
+:root e
     --container-height: 25px; /* Height of each container element */
     --stack-height: 500px;
-    --base-y: calc(50vh - 100px); /* Base Y position for the first element */
-    --x-position: calc(40vw - 50%); /* X position of the stack, adjusted for width */
     --animation-duration: 2s; /* Duration of the moveToStack animation */
 }
 
@@ -102,26 +100,27 @@
     z-index: 2;
 }
 
+
 @keyframes moveToStack {
     0% {
         opacity: 1;
-        transform: translateY(0) translateX(0);
+        transform: translateY(var(--operation-x)) translateX(var(--operation-y));
     }
     20% {
         opacity: 1;
-        transform: translateY(-20px) translateX(0); /* Move up */
+        transform: translateY(-60vh) translateX(0); /* Move up */
     }
     50% {
         opacity: 1;
-        transform: translateY(-20px) translateX(var(--x-position)); /* Move to the right towards the center */
+        transform: translateY(-60vh) translateX(calc(var(--stack-x) - 80px)); /* Move to the right towards the stack */
     }
     80% {
         opacity: 1;
-        transform: translateY(calc(var(--base-y) - var(--container-height) * var(--index))) translateX(var(--x-position)); /* Move down into the stack */
+        transform: translateY(calc(var(--stack-y) - var(--container-height) * var(--index))) translateX(calc(var(--stack-x) - 80px)); /* Move down into the stack */
     }
     100% {
         opacity: 0;
-        transform: translateY(calc(var(--base-y) - var(--container-height) * var(--index))) translateX(var(--x-position)); /* Fade out */
+        transform: translateY(calc(var(--stack-y) - var(--container-height) * var(--index))) translateX(calc(var(--stack-x) - 80px)); /* Fade out */
     }
 }
 
@@ -136,7 +135,7 @@
 
 .operation-result {
     grid-column: 1 / span 1; /* Align with the stack */
-    grid-row: 4; /* Move to the base level of the stack */
+    grid-row: 3; /* Move to the base level of the stack */
     width: 100%;
     align-self: end; /* Align to the bottom of the row */
 }
