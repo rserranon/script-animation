@@ -1,4 +1,4 @@
-:root e
+:root 
     --container-height: 25px; /* Height of each container element */
     --stack-height: 500px;
     --animation-duration: 2s; /* Duration of the moveToStack animation */
@@ -56,6 +56,8 @@
     grid-column: 3 / span 1;
     grid-row: 2 / span 3; /* Adjust row span if needed */
     flex-direction: column-reverse;
+    grid-auto-rows: minmax(var(--container-height), auto);
+    align-items: start;
     width: 160px;
     height: var(--stack-height); /* Dynamically adjust stack height */
     border: 2px solid #333;

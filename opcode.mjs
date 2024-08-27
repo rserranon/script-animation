@@ -1,170 +1,125 @@
+export const opcodeDictionary = {
+  "OP_0": { type: "constants", isOpcode: true },
+  "OP_FALSE": { type: "constants", isOpcode: true },
+  "OP_PUSHDATA1": { type: "constants", isOpcode: true },
+  "OP_PUSHDATA2": { type: "constants", isOpcode: true },
+  "OP_PUSHDATA4": { type: "constants", isOpcode: true },
+  "OP_1NEGATE": { type: "constants", isOpcode: true },
+  "OP_1": { type: "constants", isOpcode: true },
+  "OP_TRUE": { type: "constants", isOpcode: true },
+  "OP_2": { type: "constants", isOpcode: true },
+  "OP_3": { type: "constants", isOpcode: true },
+  "OP_4": { type: "constants", isOpcode: true },
+  "OP_5": { type: "constants", isOpcode: true },
+  "OP_6": { type: "constants", isOpcode: true },
+  "OP_7": { type: "constants", isOpcode: true },
+  "OP_8": { type: "constants", isOpcode: true },
+  "OP_9": { type: "constants", isOpcode: true },
+  "OP_10": { type: "constants", isOpcode: true },
+  "OP_11": { type: "constants", isOpcode: true },
+  "OP_12": { type: "constants", isOpcode: true },
+  "OP_13": { type: "constants", isOpcode: true },
+  "OP_14": { type: "constants", isOpcode: true },
+  "OP_15": { type: "constants", isOpcode: true },
+  "OP_16": { type: "constants", isOpcode: true },
+
+  "OP_NOP": { type: "flow-control", isOpcode: true },
+  "OP_IF": { type: "flow-control", isOpcode: true },
+  "OP_NOTIF": { type: "flow-control", isOpcode: true },
+  "OP_ELSE": { type: "flow-control", isOpcode: true },
+  "OP_ENDIF": { type: "flow-control", isOpcode: true },
+  "OP_VERIFY": { type: "flow-control", isOpcode: true },
+  "OP_RETURN": { type: "flow-control", isOpcode: true },
+
+  "OP_TOALTSTACK": { type: "stack-opcode", isOpcode: true },
+  "OP_FROMALTSTACK": { type: "stack-opcode", isOpcode: true },
+  "OP_IFDUP": { type: "stack-opcode", isOpcode: true },
+  "OP_DEPTH": { type: "stack-opcode", isOpcode: true },
+  "OP_DROP": { type: "stack-opcode", isOpcode: true },
+  "OP_DUP": { type: "stack-opcode", isOpcode: true },
+  "OP_NIP": { type: "stack-opcode", isOpcode: true },
+  "OP_OVER": { type: "stack-opcode", isOpcode: true },
+  "OP_PICK": { type: "stack-opcode", isOpcode: true },
+  "OP_ROLL": { type: "stack-opcode", isOpcode: true },
+  "OP_ROT": { type: "stack-opcode", isOpcode: true },
+  "OP_SWAP": { type: "stack-opcode", isOpcode: true },
+  "OP_TUCK": { type: "stack-opcode", isOpcode: true },
+  "OP_2DROP": { type: "stack-opcode", isOpcode: true },
+  "OP_2DUP": { type: "stack-opcode", isOpcode: true },
+  "OP_3DUP": { type: "stack-opcode", isOpcode: true },
+  "OP_2OVER": { type: "stack-opcode", isOpcode: true },
+  "OP_2ROT": { type: "stack-opcode", isOpcode: true },
+  "OP_2SWAP": { type: "stack-opcode", isOpcode: true },
+
+  "OP_CAT": { type: "splice", isOpcode: true },
+  "OP_SUBSTR": { type: "splice", isOpcode: true },
+  "OP_LEFT": { type: "splice", isOpcode: true },
+  "OP_RIGHT": { type: "splice", isOpcode: true },
+  "OP_SIZE": { type: "splice", isOpcode: true },
+
+  "OP_INVERT": { type: "bitwise", isOpcode: true },
+  "OP_AND": { type: "bitwise", isOpcode: true },
+  "OP_OR": { type: "bitwise", isOpcode: true },
+  "OP_XOR": { type: "bitwise", isOpcode: true },
+  "OP_EQUAL": { type: "bitwise", isOpcode: true },
+  "OP_EQUALVERIFY": { type: "bitwise", isOpcode: true },
+
+  "OP_1ADD": { type: "arithmetic", isOpcode: true },
+  "OP_1SUB": { type: "arithmetic", isOpcode: true },
+  "OP_2MUL": { type: "arithmetic", isOpcode: true },
+  "OP_2DIV": { type: "arithmetic", isOpcode: true },
+  "OP_NEGATE": { type: "arithmetic", isOpcode: true },
+  "OP_ABS": { type: "arithmetic", isOpcode: true },
+  "OP_NOT": { type: "arithmetic", isOpcode: true },
+  "OP_0NOTEQUAL": { type: "arithmetic", isOpcode: true },
+  "OP_ADD": { type: "arithmetic", isOpcode: true },
+  "OP_SUB": { type: "arithmetic", isOpcode: true },
+  "OP_MUL": { type: "arithmetic", isOpcode: true },
+  "OP_DIV": { type: "arithmetic", isOpcode: true },
+  "OP_MOD": { type: "arithmetic", isOpcode: true },
+  "OP_LSHIFT": { type: "arithmetic", isOpcode: true },
+  "OP_RSHIFT": { type: "arithmetic", isOpcode: true },
+  "OP_BOOLAND": { type: "arithmetic", isOpcode: true },
+  "OP_BOOLOR": { type: "arithmetic", isOpcode: true },
+  "OP_NUMEQUAL": { type: "arithmetic", isOpcode: true },
+  "OP_NUMEQUALVERIFY": { type: "arithmetic", isOpcode: true },
+  "OP_NUMNOTEQUAL": { type: "arithmetic", isOpcode: true },
+  "OP_LESSTHAN": { type: "arithmetic", isOpcode: true },
+  "OP_GREATERTHAN": { type: "arithmetic", isOpcode: true },
+  "OP_LESSTHANOREQUAL": { type: "arithmetic", isOpcode: true },
+  "OP_GREATERTHANOREQUAL": { type: "arithmetic", isOpcode: true },
+  "OP_MIN": { type: "arithmetic", isOpcode: true },
+  "OP_MAX": { type: "arithmetic", isOpcode: true },
+  "OP_WITHIN": { type: "arithmetic", isOpcode: true },
+
+  "OP_RIPEMD160": { type: "crypto", isOpcode: true },
+  "OP_SHA1": { type: "crypto", isOpcode: true },
+  "OP_SHA256": { type: "crypto", isOpcode: true },
+  "OP_HASH160": { type: "crypto", isOpcode: true },
+  "OP_HASH256": { type: "crypto", isOpcode: true },
+  "OP_CODESEPARATOR": { type: "crypto", isOpcode: true },
+  "OP_CHECKSIG": { type: "crypto", isOpcode: true },
+  "OP_CHECKSIGVERIFY": { type: "crypto", isOpcode: true },
+  "OP_CHECKMULTISIG": { type: "crypto", isOpcode: true },
+  "OP_CHECKMULTISIGVERIFY": { type: "crypto", isOpcode: true },
+  "OP_CHECKSIGADD": { type: "crypto", isOpcode: true },
+
+  "OP_CHECKLOCKTIMEVERIFY": { type: "locktime", isOpcode: true },
+  "OP_CHECKSEQUENCEVERIFY": { type: "locktime", isOpcode: true },
+
+  "pk(A)": { type: "keys", isOpcode: false },
+  "pk(B)": { type: "keys", isOpcode: false },
+  "pk(C)": { type: "keys", isOpcode: false },
+  "pk(D)": { type: "keys", isOpcode: false },
+  "pk(E)": { type: "keys", isOpcode: false },
+};
+
 export function getOpcodeType(opcode) {
-  const constants = [
-    "OP_0",
-    "OP_FALSE",
-    "OP_PUSHDATA1",
-    "OP_PUSHDATA2",
-    "OP_PUSHDATA4",
-    "OP_1NEGATE",
-    "OP_1",
-    "OP_TRUE",
-    "OP_2",
-    "OP_3",
-    "OP_4",
-    "OP_5",
-    "OP_6",
-    "OP_7",
-    "OP_8",
-    "OP_9",
-    "OP_10",
-    "OP_11",
-    "OP_12",
-    "OP_13",
-    "OP_14",
-    "OP_15",
-    "OP_16",
-  ];
-
-  const flowControl = [
-    "OP_NOP",
-    "OP_IF",
-    "OP_NOTIF",
-    "OP_ELSE",
-    "OP_ENDIF",
-    "OP_VERIFY",
-    "OP_RETURN",
-  ];
-
-  const stackOpcode = [
-    "OP_TOALTSTACK",
-    "OP_FROMALTSTACK",
-    "OP_IFDUP",
-    "OP_DEPTH",
-    "OP_DROP",
-    "OP_DUP",
-    "OP_NIP",
-    "OP_OVER",
-    "OP_PICK",
-    "OP_ROLL",
-    "OP_ROT",
-    "OP_SWAP",
-    "OP_TUCK",
-    "OP_2DROP",
-    "OP_2DUP",
-    "OP_3DUP",
-    "OP_2OVER",
-    "OP_2ROT",
-    "OP_2SWAP",
-  ];
-
-  const splice = [
-    "OP_CAT",
-    "OP_SUBSTR",
-    "OP_LEFT",
-    "OP_RIGHT",
-    "OP_SIZE",
-  ];
-
-  const bitwise = [
-    "OP_INVERT",
-    "OP_AND",
-    "OP_OR",
-    "OP_XOR",
-    "OP_EQUAL",
-    "OP_EQUALVERIFY",
-  ];
-
-  const arithmetic = [
-    "OP_1ADD",
-    "OP_1SUB",
-    "OP_2MUL",
-    "OP_2DIV",
-    "OP_NEGATE",
-    "OP_ABS",
-    "OP_NOT",
-    "OP_0NOTEQUAL",
-    "OP_ADD",
-    "OP_SUB",
-    "OP_MUL",
-    "OP_DIV",
-    "OP_MOD",
-    "OP_LSHIFT",
-    "OP_RSHIFT",
-    "OP_BOOLAND",
-    "OP_BOOLOR",
-    "OP_NUMEQUAL",
-    "OP_NUMEQUALVERIFY",
-    "OP_NUMNOTEQUAL",
-    "OP_LESSTHAN",
-    "OP_GREATERTHAN",
-    "OP_LESSTHANOREQUAL",
-    "OP_GREATERTHANOREQUAL",
-    "OP_MIN",
-    "OP_MAX",
-    "OP_WITHIN",
-  ];
-
-  const crypto = [
-    "OP_RIPEMD160",
-    "OP_SHA1",
-    "OP_SHA256",
-    "OP_HASH160",
-    "OP_HASH256",
-    "OP_CODESEPARATOR",
-    "OP_CHECKSIG",
-    "OP_CHECKSIGVERIFY",
-    "OP_CHECKMULTISIG",
-    "OP_CHECKMULTISIGVERIFY",
-    "OP_CHECKSIGADD",
-  ];
-
-  const locktime = [
-    "OP_CHECKLOCKTIMEVERIFY",
-    "OP_CHECKSEQUENCEVERIFY",
-  ];
-
-  const keys = [
-    "pk(A)",
-    "pk(B)",
-    "pk(C)",
-    "pk(D)",
-    "pk(E)", // Example public keys
-  ];
-
-  if (constants.includes(opcode)) return "constants";
-  if (flowControl.includes(opcode)) return "flow-control";
-  if (stackOpcode.includes(opcode)) return "stack-opcode"; // Use 'stack-opcode'
-  if (splice.includes(opcode)) return "splice";
-  if (bitwise.includes(opcode)) return "bitwise";
-  if (arithmetic.includes(opcode)) return "arithmetic";
-  if (crypto.includes(opcode)) return "crypto";
-  if (locktime.includes(opcode)) return "locktime";
-  if (keys.includes(opcode)) return "keys";
-  return "unknown"; // Default case
+  const entry = opcodeDictionary[opcode];
+  return entry ? entry.type : "unknown";
 }
 
-export function updateFooter() {
-  const footer = document.querySelector(".footer");
-  footer.innerHTML = ""; // Clear previous labels
-
-  // List of all possible types
-  const allTypes = [
-    "constants",
-    "flow-control",
-    "stack-opcode",
-    "splice", // Updated from 'stack' to 'stack-opcode'
-    "bitwise",
-    "arithmetic",
-    "crypto",
-    "locktime",
-    "keys",
-  ];
-
-  // Create a label for each type
-  allTypes.forEach((type) => {
-    const label = document.createElement("div");
-    label.classList.add("label", type);
-    label.innerText = type.replace("-", " "); // Replace hyphens with spaces for readability
-    footer.appendChild(label);
-  });
+export function isOpcode(opcode) {
+  const entry = opcodeDictionary[opcode];
+  return entry ? entry.isOpcode : false;
 }
