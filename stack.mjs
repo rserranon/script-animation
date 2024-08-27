@@ -36,7 +36,7 @@ export class Stack {
 
   // Peek the element on the top of the stack without removing it
   peek() {
-    const value = this.stack.accessAt(-1);
+    const value = this.accessAt(-1);
     const position = -1;
     this.emit("accessAt", { stack: this.stack.slice(), value, position }); // Trigger 'pop' event
     return value;

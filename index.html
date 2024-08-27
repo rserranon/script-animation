@@ -27,9 +27,9 @@
         </div>
         <div class="controls">
             <!-- Input for opcode string -->
-            <input type="text" id="opcodeInput" placeholder="Enter opcodes (e.g., OP_DUP OP_HASH160)">
+            <input type="text" id="scriptInput" placeholder="Enter opcodes (e.g., OP_DUP OP_HASH160)">
             <!-- Button to trigger the animation -->
-            <button onclick="animateOpcodes(document.getElementById('opcodeInput').value)">Run Scritp</button>
+            <button onclick="parseAndExecute(document.getElementById('scriptInput').value)">Run Scritp</button>
             <button onclick="">Clear Running Script and Cancel</button>
             <label>
               <input type="checkbox" id="toggleAltStack" onclick="toggleAltStackVisibility()"> 
